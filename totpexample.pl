@@ -55,7 +55,7 @@ my $OTPDIGITS = 6;
 my $OTPSTEP = 60;
 my $TOTP_ATTR = 'description';
 my $TOTP_BIND_USER = 'cn=totpauthenticator,dc=example,dc=com';
-my $TOTP_BIND_PASS = "BindPassword or read it from a mode 400 root:root file";
+my $TOTP_BIND_PASS = "BindPassword or read it from a mode 400 file";
 my $TOTP_KEY = "TOTP Secret encryption key, or as above, read it from a file";
 my $OTP_PATH = '/tmp/totp';
 my $MUNGE = "RANDOMCHARS";
