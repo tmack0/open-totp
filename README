@@ -1,0 +1,7 @@
+The files in this repo inclue an example script for using FreeRADIUS to do TOTP authentication. It is based on the example perl module script that is distributed with the FreeRADIUS software, and is provided here under the same license (GPL). It carries the same warnings and is distributed here ONLY as an example! USE AT YOUR OWN RISK.
+
+In Debian you will need a few apt-packages (use perl -MCPAN if some (Authen::OATH) are not available in your dist):
+
+apt-get install freeradius freeradius-ldap libnet-ldap-perl libmoose-perl libdigest-sha1-perl libdigest-hmac-perl libio-socket-ssl-perl libcrypt-cbc-perl libcrypt-blowfish-perl libauthen-oath-perl
+
+I may add provisioning code snippets in here later.
