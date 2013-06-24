@@ -58,7 +58,7 @@ my $TOTP_BIND_USER = 'cn=totpauthenticator,dc=example,dc=com';
 my $TOTP_BIND_PASS = "BindPassword or read it from a mode 400 file";
 my $TOTP_KEY = "TOTP Secret encryption key, or as above, read it from a file";
 my $OTP_PATH = '/tmp/totp';
-my $MUNGE = "RANDOMCHARS";
+
 chomp($TOTP_BIND_PASS);
 chomp($TOTP_KEY);
 #
@@ -150,13 +150,13 @@ sub authenticate {
     if($totp == $otp){
 	
 	#########################
-        ##  Single-use code check, $OTP_PATH must exist, and be writable by the freerad user.
+    ##  Single-use code check, $OTP_PATH must exist, and be writable by the freerad user.
 	##  To save on run time you can comment this out, but that will reduce security slightly 
 	##  as it would allow reuse of codes on this server. Note that it does not prevent other
 	##  servers from accepting a code on this server unless the $OTP_PATH dir is kept in sync
 	#########################
 	my $md5h = Digest::MD5->new;
-	$md5h->add($RAD_REQUEST{'User-Name'}.$MUNGE.$totp);
+	$md5h->add($RAD_REQUEST{'User-Name'}.$totp_iv.$totp);
 	my $md5name = $md5h->hexdigest;
 	my $totpfname = $OTP_PATH.'/'.$md5name;
 	my $ctime = 0;
