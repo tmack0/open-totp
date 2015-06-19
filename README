@@ -1,7 +1,11 @@
-The files in this repo inclue an example script for using FreeRADIUS to do TOTP authentication. It is based on the example perl module script that is distributed with the FreeRADIUS software, and is provided here under the same license (GPL). It carries the same warnings and is distributed here ONLY as an example! USE AT YOUR OWN RISK.
+The files in this repo inclue an example script for using FreeRADIUS to do TOTP authentication with LDAP used for credential storage. It is capable of token only (only enter the TOTP digits), or password+token or token+password two-factor style authentication. 
+
+It is based on the example perl module script that is distributed with the FreeRADIUS software, and is provided here under the same license (GPL). It carries the same warnings and is distributed here ONLY as an example! USE AT YOUR OWN RISK.
 
 In Debian you will need a few apt-packages (use perl -MCPAN if some (Authen::OATH) are not available in your dist):
 
 apt-get install freeradius freeradius-ldap libnet-ldap-perl libmoose-perl libdigest-sha1-perl libdigest-hmac-perl libio-socket-ssl-perl libcrypt-cbc-perl libcrypt-blowfish-perl libauthen-oath-perl
+
+You will also need an LDAP server to authenticate against and read attributes from the authenticating user. The example script included defaults to use the "Description" attr, which is usually part of a standard account's attributes in LDAP. This can (and should) be changed before being put into use to an attribute created for this specific purpose with proper ACLs to restrict access to it to only be readable by the TOTP script (ie:  freeradius user) and only writable by your provisioning software.
 
 I may add provisioning code snippets in here later.
